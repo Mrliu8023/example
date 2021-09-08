@@ -27,7 +27,7 @@ func main1() {
 func getMSClient() *meilisearch.Client {
 
 	client := meilisearch.NewClient(meilisearch.ClientConfig{
-		Host: "http://127.0.0.1:7700",
+		Host: "http://192.168.30.58:7700",
 	})
 
 	return client

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
 type A struct {
 	a bool
@@ -20,6 +17,8 @@ type B struct {
 // input 1.2.17
 // output 1 1.2 1.2.17
 func main() {
-	a := "1"
-	fmt.Println(a[:strings.LastIndex(a, ".")])
+	a := make(map[string][]string)
+
+	a["1"] = append(a["1"], "1", "2")
+	fmt.Println(a["1"])
 }

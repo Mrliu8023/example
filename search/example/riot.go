@@ -16,7 +16,7 @@ func initEngine() {
 	var path = "./riot-index"
 
 	searcher.Init(types.EngineOpts{
-		Using:   4,
+		// Using:   4,
 		GseMode: true,
 		PinYin:  true,
 		IndexerOpts: &types.IndexerOpts{
@@ -39,7 +39,6 @@ func initEngine() {
 	//index5 := types.DocData{Content: "基础设施/综合布线/其他/维谛/维谛/公共模块/温湿度", Tokens: []types.TokenData{types.TokenData{Text: "温湿度", Locations: []int{
 	//	strings.LastIndex("基础设施/综合布线/其他/维谛/维谛/公共模块/温湿度", "/") + 1,
 	//}}}}
-
 	fmt.Println(searcher.Segment("基础设施/综合布线/其他/维谛/维谛/公共模块/温湿度Th03"))
 	fmt.Println(searcher.PinYin("基础设施/综合布线/其他/维谛/维谛/公共模块/温湿度"))
 

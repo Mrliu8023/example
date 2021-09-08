@@ -12,6 +12,14 @@ type Group struct {
 	Value   string `json:"value"`
 }
 
+func (g *Group) Name() string {
+	return g.ID
+}
+
+func (g *Group) Content() string {
+	return g.Display
+}
+
 type GroupList struct {
 	Groups []*Group
 	Length int

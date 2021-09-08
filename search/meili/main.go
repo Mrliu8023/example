@@ -13,7 +13,7 @@ import (
 func main() {
 	c := getMSClient()
 
-	gl, err := groups_dev.Parse("D:\\go\\src\\example\\search\\groups_dev.json")
+	gl, err := groups_dev.Parse("D:\\go\\src\\example\\groups_dev.json")
 	if err != nil {
 		panic(err)
 	}
@@ -38,7 +38,7 @@ func main() {
 	for i, g := range gl.Groups {
 		doc := map[string]interface{}{
 			"id":    strings.ReplaceAll(g.ID, ".", "_"),
-			"value": g.String(),
+			"value": g.Content(),
 		}
 		docs = append(docs, doc)
 		if i < 100 {
