@@ -8,7 +8,7 @@ import (
 )
 
 func Test_parse(t *testing.T) {
-	gl, err := Parse("groups_dev.json")
+	gl, err := Parse("../groups_dev.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,12 +24,12 @@ func Test_parse(t *testing.T) {
 }
 
 func TestBuildDict(t *testing.T) {
-	gl, err := Parse("D:\\go\\src\\example\\groups_dev.json")
+	gl, err := Parse("../groups_dev.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	fp, err := os.OpenFile("D:\\go\\src\\example\\groups-dev\\dict_groups.txt", os.O_CREATE, os.ModePerm)
+	fp, err := os.OpenFile("./dict_groups.txt", os.O_CREATE, os.ModePerm)
 	if err != nil {
 		t.Fatal(err)
 	}

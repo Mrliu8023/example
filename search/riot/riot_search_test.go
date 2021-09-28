@@ -2,13 +2,14 @@ package main
 
 import (
 	"encoding/json"
-	"example/groups-dev"
+	groups_dev "example/groups-dev"
 	"fmt"
-	"github.com/go-ego/riot/types"
 	"net/http"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/go-ego/riot/types"
 )
 
 func TestRiot(t *testing.T) {
