@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"gorm.io/datatypes"
+)
 
 type A struct {
 	a bool
@@ -9,16 +13,24 @@ type A struct {
 }
 
 type B struct {
-	a bool
-	b bool
-	c int64
+	A bool
+	B bool
+	C int64
 }
 
 // input 1.2.17
 // output 1 1.2 1.2.17
 func main() {
-	a := make(map[string][]string)
+	b := B{
+		A: true,
+		B: true,
+		C: 134,
+	}
 
-	a["1"] = append(a["1"], "1", "2")
-	fmt.Println(a["1"])
+	bs, _ := json.Marshal(b)
+	dj := datatypes.JSON(bs)
+
+	var c B
+	json.Unmarshal([]byte(dj), &c)
+	fmt.Println(c)
 }

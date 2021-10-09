@@ -32,7 +32,7 @@ func main() {
 	f, _ := os.OpenFile("mem.pprof", os.O_CREATE|os.O_RDWR, 0644)
 	defer f.Close()
 
-	addDocs(*file)
+	// addDocs(*file)
 
 	http.HandleFunc("/search", func(w http.ResponseWriter, r *http.Request) {
 		text := r.URL.Query()["text"]
