@@ -2,6 +2,7 @@ package main
 
 import (
 	groups_dev "example/groups-dev"
+	"example/search"
 	"fmt"
 	"github.com/meilisearch/meilisearch-go"
 	"net/http"
@@ -35,29 +36,27 @@ func main() {
 	docs := []map[string]interface{}{}
 
 	// a document primary key can be of type integer or string only composed of alphanumeric characters, hyphens (-) and underscores (_).
-	for i, g := range gl.Groups {
+	for _, g := range gl.Groups {
 		doc := map[string]interface{}{
-			"id":    strings.ReplaceAll(g.ID, ".", "_"),
-			"value": g.Content(),
+			"id":     strings.ReplaceAll(g.ID, ".", "_"),
+			"value":  g.Content(),
+			"pinyin": search.PinYin(strings.ReplaceAll(g.Display, "/", ",")),
 		}
 		docs = append(docs, doc)
-		if i < 100 {
-			fmt.Println(doc)
-		}
 	}
 
 	id, err := c.Index("groups-dev").AddDocuments(docs)
 	if err != nil {
 		panic(err)
 	}
-
+	t0 := time.Now()
 	for {
 		resp, err := c.Index("groups-dev").GetUpdateStatus(id.UpdateID)
 		if err != nil {
 			panic(err)
 		}
 		if resp.Status == meilisearch.UpdateStatusProcessed {
-			fmt.Println("update ok!")
+			fmt.Println("update ok!, spend: ", time.Since(t0))
 			break
 		} else if resp.Status == meilisearch.UpdateStatusFailed {
 			panic(fmt.Errorf("update failed: %s", resp.Error))
